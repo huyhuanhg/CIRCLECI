@@ -1,5 +1,12 @@
 version: 2.1
 
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello:
+        context:
+          - org-global
+
 jobs:
   say-hello:
     docker:
@@ -9,10 +16,3 @@ jobs:
       - run:
           name: "Say hello"
           command: echo $MY_ENV_VAR
-
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello:
-        context:
-          - org-global
