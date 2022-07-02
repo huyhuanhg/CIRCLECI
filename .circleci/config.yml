@@ -1,18 +1,18 @@
 version: 2.1
 
-workflows:
-  my-workflow:
-    jobs:
-      - run-tests:
-          context:
-            - org-global
-
 jobs:
-  run-tests:
+  say-hello:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
       - run:
-          name: "echo environment variables from org-global context"
+          name: "Say hello"
           command: echo $MY_ENV_VAR
+
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello:
+        context:
+          - org-global
